@@ -6,12 +6,13 @@ import { setupDatabase } from '../preload/database'
 
 setupDatabase()
 
-function createWindow(): void {
+export function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 1024,
     height: 768,
     show: false,
+    titleBarStyle: 'customButtonsOnHover',
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
@@ -21,6 +22,7 @@ function createWindow(): void {
   })
 
   mainWindow.on('ready-to-show', () => {
+    mainWindow.maximize()
     mainWindow.show()
   })
 
